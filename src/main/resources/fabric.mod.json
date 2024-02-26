@@ -3,20 +3,23 @@
 	"id": "arcanistsparagon",
 	"version": "${version}",
 	"name": "Arcanist's Paragon",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Bluarp!",
 	"authors": [
-		"Me!"
+		"Polpo"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/arcanistsparagon/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			"net.polpo.arcanistsparagon.ArcanistsParagon"
+		],
+		"client": [
+			"net.polpo.arcanistsparagon.ArcanistsParagonClient"
 		],
 		"fabric-datagen": [
 			"net.polpo.arcanistsparagon.ArcanistsParagonDataGenerator"
