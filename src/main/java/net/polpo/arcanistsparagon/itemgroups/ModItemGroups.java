@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.item.ModItems;
 
 public class ModItemGroups {
@@ -17,7 +18,12 @@ public class ModItemGroups {
             new Identifier(ArcanistsParagon.MOD_ID, "arcane_core"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.arcanist"))
                     .icon(() -> new ItemStack(ModItems.ARCANE_CORE)).entries((displayContext, entries) -> {
+                        //items herein!
                         entries.add(ModItems.ARCANE_CORE);
+                        entries.add(ModItems.ASPHODITE_CHUNK);
+
+                        entries.add(ModBlocks.ASPHODITE_ORE);
+
                     }).build());
 
     public static void registerItemGroups(){

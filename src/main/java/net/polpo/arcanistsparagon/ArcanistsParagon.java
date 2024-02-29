@@ -2,6 +2,7 @@ package net.polpo.arcanistsparagon;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.item.ModItems;
 import net.polpo.arcanistsparagon.itemgroups.ModItemGroups;
 import org.slf4j.Logger;
@@ -17,5 +18,6 @@ public class ArcanistsParagon implements ModInitializer {
 
 		ModItems.RegisterModItems();
 		ModItemGroups.registerItemGroups();
+		ModBlocks.registerModBlocks();
 	}
 }

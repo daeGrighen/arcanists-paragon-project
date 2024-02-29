@@ -1,5 +1,8 @@
 {
   "item.arcanistsparagon.arcane_core": "Arcane Core",
+  "item.arcanistsparagon.asphodite_chunk": "Asphodite Chunk",
+
+  "block.arcanistsparagon.asphodite_ore": "Asphodite Ore",
 
   "itemgroup.arcanist": "Arcanist's Paragon"
 }

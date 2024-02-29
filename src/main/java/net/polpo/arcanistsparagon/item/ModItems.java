@@ -14,6 +14,7 @@ import net.polpo.arcanistsparagon.ArcanistsParagon;
 public class ModItems {
 
     public static final Item ARCANE_CORE = registerItem("arcane_core", new Item(new FabricItemSettings()));
+    public static final Item ASPHODITE_CHUNK = registerItem("asphodite_chunk", new Item(new FabricItemSettings()));
 
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){
