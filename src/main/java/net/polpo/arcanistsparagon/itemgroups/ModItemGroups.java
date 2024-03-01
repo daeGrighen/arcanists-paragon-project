@@ -21,8 +21,11 @@ public class ModItemGroups {
                         //items herein!
                         entries.add(ModItems.ARCANE_CORE);
                         entries.add(ModItems.ASPHODITE_CHUNK);
+                        entries.add(ModItems.DIVINING_ROD);
+                        entries.add(ModItems.BLAZING_COAL);
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
+                        entries.add(ModBlocks.RITUAL_TABLE);
 
                     }).build());
 

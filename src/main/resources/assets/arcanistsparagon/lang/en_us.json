@@ -1,8 +1,11 @@
 {
   "item.arcanistsparagon.arcane_core": "Arcane Core",
   "item.arcanistsparagon.asphodite_chunk": "Asphodite Chunk",
+  "item.arcanistsparagon.divining_rod": "Divining Rod",
+  "item.arcanistsparagon.blazing_coal": "Blazing Coal",
 
   "block.arcanistsparagon.asphodite_ore": "Asphodite Ore",
+  "block.arcanistsparagon.ritual_table": "Ritual Table",
 
   "itemgroup.arcanist": "Arcanist's Paragon"
 }

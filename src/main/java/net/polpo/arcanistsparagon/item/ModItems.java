@@ -10,11 +10,16 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.item.custom.DiviningRodItem;
 
 public class ModItems {
 
     public static final Item ARCANE_CORE = registerItem("arcane_core", new Item(new FabricItemSettings()));
     public static final Item ASPHODITE_CHUNK = registerItem("asphodite_chunk", new Item(new FabricItemSettings()));
+    public static final Item DIVINING_ROD = registerItem("divining_rod",
+            new DiviningRodItem(new FabricItemSettings().maxDamage(64)));
+
+    public static final Item BLAZING_COAL = registerItem("blazing_coal", new Item(new FabricItemSettings()));
 
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){

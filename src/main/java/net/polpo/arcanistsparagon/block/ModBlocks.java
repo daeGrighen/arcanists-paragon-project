@@ -13,12 +13,16 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.block.custom.RitualTableBlock;
 
 public class ModBlocks {
 
     public static final Block ASPHODITE_ORE = registerBlock("asphodite_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(2,5),
                     FabricBlockSettings.copyOf(Blocks.END_STONE).strength(2f).slipperiness(2f).sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+
+    public static final Block RITUAL_TABLE = registerBlock("ritual_table",
+            new RitualTableBlock(FabricBlockSettings.copyOf(Blocks.DIORITE).nonOpaque()));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

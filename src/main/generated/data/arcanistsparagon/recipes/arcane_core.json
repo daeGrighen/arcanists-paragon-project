@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "arcanistsparagon:asphodite_chunk"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "EIE",
+    "IAI",
+    "EIE"
+  ],
+  "result": {
+    "item": "arcanistsparagon:arcane_core"
+  }
+}
