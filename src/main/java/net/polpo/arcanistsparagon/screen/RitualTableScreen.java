@@ -31,7 +31,20 @@ public class RitualTableScreen extends HandledScreen<RitualTableScreenHandler> {
         int y = (height - backgroundHeight) /2;
 
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
-         //https://www.youtube.com/watch?v=Y4dK9ETdZCQ&list=PLKGarocXCE1EO43Dlf5JGh7Yk-kRAXUEJ&index=31 25:37
+        renderProgressArrow(context, x, y);
 
+    }
+
+    private void renderProgressArrow(DrawContext context, int x, int y) {
+        if(handler.isCrafting()){
+            context.drawTexture(TEXTURE, x+85, y+30, 176, 0, 8, handler.getScaledProgress());
+        }
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        renderBackground(context, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }

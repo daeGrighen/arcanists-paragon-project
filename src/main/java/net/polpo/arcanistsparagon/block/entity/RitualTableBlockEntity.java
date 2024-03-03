@@ -20,6 +20,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.polpo.arcanistsparagon.item.ModItems;
+import net.polpo.arcanistsparagon.screen.RitualTableScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
 public class RitualTableBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
@@ -92,7 +93,7 @@ public class RitualTableBlockEntity extends BlockEntity implements ExtendedScree
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return
+        return new RitualTableScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
 

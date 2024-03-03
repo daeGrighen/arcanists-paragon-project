@@ -1,8 +1,10 @@
-// 1.20.4	2024-03-01T18:19:24.7832521	Arcanist's Paragon/Model Definitions
-d5a8e9538a3a76c4dcb1f09a26486a48f1beafae assets\arcanistsparagon\models\item\asphodite_chunk.json
-9ad8bc088d1ece0ec1b8967fe3cfd1cf63df6f6d assets\arcanistsparagon\models\item\asphodite_ore.json
+// 1.20.4	2024-03-03T09:01:22.3061762	Arcanist's Paragon/Model Definitions
+2b21f6a608fd96eb2dab11c5d5240f7b93a434cc assets\arcanistsparagon\models\item\blazing_coal.json
+77fe4644fd09e81fa808d13bf260b4067d69dae7 assets\arcanistsparagon\models\item\ritual_table.json
 a54ed81dade680d61f54c6abf428c806ceb5e798 assets\arcanistsparagon\models\item\divining_rod.json
 54b51b7bc188fc9b03906919fd3c831969d7bd6d assets\arcanistsparagon\models\item\arcane_core.json
+cd651bb4e482e171965c6b415069cd5eed775f8e assets\arcanistsparagon\blockstates\ritual_table.json
 634c8a865252d4f2ab662fd028e82cb3c16d3c70 assets\arcanistsparagon\models\block\asphodite_ore.json
-2b21f6a608fd96eb2dab11c5d5240f7b93a434cc assets\arcanistsparagon\models\item\blazing_coal.json
 e854959970419b535b3acfa0cab7c926875aa3e8 assets\arcanistsparagon\blockstates\asphodite_ore.json
+d5a8e9538a3a76c4dcb1f09a26486a48f1beafae assets\arcanistsparagon\models\item\asphodite_chunk.json
+9ad8bc088d1ece0ec1b8967fe3cfd1cf63df6f6d assets\arcanistsparagon\models\item\asphodite_ore.json

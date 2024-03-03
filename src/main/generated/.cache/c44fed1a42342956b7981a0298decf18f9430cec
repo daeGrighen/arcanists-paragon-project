@@ -1,4 +1,4 @@
-// 1.20.4	2024-03-01T18:19:24.7846326	Arcanist's Paragon/Tags for minecraft:block
+// 1.20.4	2024-03-03T09:01:22.3241275	Arcanist's Paragon/Tags for minecraft:block
 29f637f8d30f423ce110eeefd914d3230dc89ec0 data\fabric\tags\blocks\needs_tool_level_4.json
-6ea39c449001a390488fb9ac71b94ed9ab915132 data\arcanistsparagon\tags\blocks\diviner_rod_findable_blocks.json
 29f637f8d30f423ce110eeefd914d3230dc89ec0 data\minecraft\tags\blocks\mineable\pickaxe.json
+6ea39c449001a390488fb9ac71b94ed9ab915132 data\arcanistsparagon\tags\blocks\diviner_rod_findable_blocks.json
