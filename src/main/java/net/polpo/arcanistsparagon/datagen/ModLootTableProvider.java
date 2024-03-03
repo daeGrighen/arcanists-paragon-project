@@ -33,6 +33,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.ASPHODITE_ORE, multipleDropOreBlocks(ModBlocks.ASPHODITE_ORE, ModItems.ASPHODITE_CHUNK, 1.0f, 3.0f));
+        addDrop(ModBlocks.RITUAL_PEDESTAL);
+        addDrop(ModBlocks.RITUAL_TABLE);
     }
 
     public LootTable.Builder multipleDropOreBlocks(Block drop, Item item, float min, float max) {

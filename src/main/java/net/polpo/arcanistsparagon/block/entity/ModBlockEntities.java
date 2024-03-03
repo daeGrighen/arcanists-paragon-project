@@ -13,6 +13,11 @@ public class ModBlockEntities {
             Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(ArcanistsParagon.MOD_ID, "ritual_table_be"),
                     FabricBlockEntityTypeBuilder.create(RitualTableBlockEntity::new, ModBlocks.RITUAL_TABLE).build());
 
+    public static final BlockEntityType<RitualPedestalBlockEntity> RITUAL_PEDESTAL_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(ArcanistsParagon.MOD_ID, "ritual_pedestal_be"),
+                    FabricBlockEntityTypeBuilder.create(RitualPedestalBlockEntity::new, ModBlocks.RITUAL_PEDESTAL).build());
+
+
     public static void registerBlockEntities(){
         ArcanistsParagon.LOGGER.info("Registering BlockEntities for "+ ArcanistsParagon.MOD_ID);
     }

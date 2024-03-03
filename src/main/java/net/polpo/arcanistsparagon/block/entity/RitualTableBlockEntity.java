@@ -34,7 +34,7 @@ public class RitualTableBlockEntity extends BlockEntity implements ExtendedScree
     private static final int OUTPUT_SLOT = 1;
 
     protected final PropertyDelegate propertyDelegate;
-    private int progress =0 ;
+    private int progress = 0 ;
     private int maxProgress = 72;
 
     public RitualTableBlockEntity(BlockPos pos, BlockState state) {
