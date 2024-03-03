@@ -26,6 +26,7 @@ public class ModItemGroups {
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
                         entries.add(ModBlocks.RITUAL_TABLE);
+                        entries.add(ModBlocks.RITUAL_PEDESTAL);
 
                     }).build());
 

@@ -8,6 +8,7 @@ import net.polpo.arcanistsparagon.block.entity.ModBlockEntities;
 import net.polpo.arcanistsparagon.item.ModFuelItems;
 import net.polpo.arcanistsparagon.item.ModItems;
 import net.polpo.arcanistsparagon.itemgroups.ModItemGroups;
+import net.polpo.arcanistsparagon.recipe.ModRecipes;
 import net.polpo.arcanistsparagon.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +30,7 @@ public class ArcanistsParagon implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 
 		ModScreenHandlers.registerScreenHandlers();
+
+		ModRecipes.registerRecipes();
 	}
 }

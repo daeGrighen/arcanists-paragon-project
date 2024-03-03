@@ -31,7 +31,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .forceAddTag(BlockTags.COPPER_ORES);
 
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
-                .add(ModBlocks.ASPHODITE_ORE);
+                .add(ModBlocks.ASPHODITE_ORE)
+                .add(ModBlocks.RITUAL_PEDESTAL)
+                .add(ModBlocks.RITUAL_TABLE);
 
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier("fabric", "needs_tool_level_4")))
                 .add(ModBlocks.ASPHODITE_ORE);

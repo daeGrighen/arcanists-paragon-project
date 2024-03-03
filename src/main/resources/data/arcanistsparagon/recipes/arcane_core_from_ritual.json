@@ -1,0 +1,12 @@
+{
+  "type": "arcanistsparagon:ritual_table_crafting",
+  "ingredients": [
+    {
+      "item": "arcanistsparagon:asphodite_chunk",
+      "count": 4
+    }
+  ],
+  "output": {
+    "item": "arcanistsparagon:arcane_core"
+  }
+}
