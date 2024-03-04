@@ -9,8 +9,10 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.LightType;
@@ -28,16 +30,17 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<RitualPe
                        MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getRenderStack();
 
-        System.out.println(stack.getItem()); //debugging
+        ItemStack item = entity.getRenderStack();
+
+        //System.out.println(item.toString()); //debugging
 
         matrices.push();
         matrices.translate(0.5f, 0.80, 0.5f);
         matrices.scale(0.35f, 0.35f, 0.35f);
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
 
-        itemRenderer.renderItem(stack, ModelTransformationMode.GUI,
+        itemRenderer.renderItem(item, ModelTransformationMode.GUI,
                 getLightLevel(entity.getWorld(), entity.getPos()), OverlayTexture.DEFAULT_UV,
                 matrices, vertexConsumers, entity.getWorld(), 1);
         matrices.pop();

@@ -5,12 +5,14 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -47,6 +49,11 @@ public class RitualPedestalBlock extends BlockWithEntity implements BlockEntityP
     }
 
     @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, world, pos, random);
+    }
+
+    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos blockPos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
         Inventory blockEntity = (Inventory) world.getBlockEntity(blockPos);
@@ -66,6 +73,8 @@ public class RitualPedestalBlock extends BlockWithEntity implements BlockEntityP
                 blockEntity.removeStack(0);
             }
         }
+        world.updateListeners(blockPos, state, state, Block.NOTIFY_LISTENERS);
+        player.sendMessage(Text.literal("the pedestal holds "+ blockEntity.getStack(0)), true);
         return ActionResult.SUCCESS;
     }
 

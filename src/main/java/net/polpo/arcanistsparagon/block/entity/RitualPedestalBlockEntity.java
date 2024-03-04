@@ -1,9 +1,8 @@
 package net.polpo.arcanistsparagon.block.entity;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -12,6 +11,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.polpo.arcanistsparagon.ArcanistsParagon;
 import org.jetbrains.annotations.Nullable;
 
 public class RitualPedestalBlockEntity extends BlockEntity implements ImplementedInventory{
@@ -28,18 +28,22 @@ public class RitualPedestalBlockEntity extends BlockEntity implements Implemente
 
     @Override
     public void readNbt(NbtCompound nbt) {
+        items.clear();
         super.readNbt(nbt);
         Inventories.readNbt(nbt, items);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
+        Inventories.writeNbt(nbt, items, true);
         super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, items);
     }
 
     public ItemStack getRenderStack(){
-        return this.getStack(0);
+        ArcanistsParagon.LOGGER.info(this.items.get(0).toString());
+        if (this.items.get(0).isEmpty())
+            return ItemStack.EMPTY;
+        else return this.getStack(0);
     }
 
     @Override
