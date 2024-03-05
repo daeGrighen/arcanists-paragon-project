@@ -14,6 +14,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
 public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
+    public static final MapCodec<RitualCoreBlock> CODEC = RitualCoreBlock.createCodec(RitualCoreBlock::new);
     public RitualCoreBlock(Settings settings) {
         super(settings);
     }
@@ -25,7 +26,7 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
 
     @Override
     protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return null;
+        return CODEC;
     }
 
     @Override
