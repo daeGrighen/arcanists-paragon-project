@@ -5,8 +5,9 @@
   "item.arcanistsparagon.blazing_coal": "Blazing Coal",
 
   "block.arcanistsparagon.asphodite_ore": "Asphodite Ore",
-  "block.arcanistsparagon.ritual_table": "Ritual Table",
+  "block.arcanistsparagon.ritual_table": "Exhalting Table",
   "block.arcanistsparagon.ritual_pedestal": "Ritual Pedestal",
+  "block.arcanistsparagon.ritual_core": "Ritual Core",
 
   "itemgroup.arcanist": "Arcanist's Paragon"
 }
