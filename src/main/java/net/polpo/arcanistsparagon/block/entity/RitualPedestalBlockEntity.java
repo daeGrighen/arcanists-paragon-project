@@ -40,7 +40,7 @@ public class RitualPedestalBlockEntity extends BlockEntity implements Implemente
     }
 
     public ItemStack getRenderStack(){
-        ArcanistsParagon.LOGGER.info(this.items.get(0).toString());
+        //ArcanistsParagon.LOGGER.info(this.items.get(0).toString());
         if (this.items.get(0).isEmpty())
             return ItemStack.EMPTY;
         else return this.getStack(0);
