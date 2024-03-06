@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "arcanistsparagon:block/ritual_table",
-		"particle": "arcanistsparagon:block/ritual_table"
+		"particle": "block/diorite"
 	},
 	"elements": [
 		{

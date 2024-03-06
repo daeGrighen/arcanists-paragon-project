@@ -28,6 +28,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RITUAL_TABLE);
                         entries.add(ModBlocks.RITUAL_PEDESTAL);
                         entries.add(ModBlocks.RITUAL_CORE);
+                        //entries.add(ModBlocks.RITUAL_CORE_BASE_BLOCK); hihihi I love programming!
 
                     }).build());
 

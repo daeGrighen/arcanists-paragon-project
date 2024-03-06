@@ -1,1 +1,4 @@
 NEED TO FIX ITEM RENDERING ON RITUAL CORE!
+prova a copiarlo da kaupen 1.19
+
+Fix ritual_core_base

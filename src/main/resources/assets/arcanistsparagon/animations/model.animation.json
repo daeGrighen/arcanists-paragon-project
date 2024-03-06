@@ -7,24 +7,36 @@
 			"bones": {
 				"ring": {
 					"rotation": {
-						"vector": [0, "math.sin(query.anim_time*30) *360", 0]
+						"vector": [
+							0,
+							"math.sin(query.anim_time*30)*360",
+							0
+						]
 					}
 				},
 				"thingamajig": {
 					"rotation": {
 						"vector": [
-							"math.sin(query.anim_time *speed +10) * rotation",
-							"math.sin(query.anim_time *40 -20) * 360",
-							"math.sin(query.anim_time *speed) * rotation"
+							"math.sin(query.anim_time*55+10)*30",
+							"math.sin(query.anim_time*40-20)*360",
+							"math.sin(query.anim_time*55)*30"
 						]
 					}
 				},
 				"rod": {
 					"position": {
-						"vector": [0, "math.sin(query.anim_time*45)*2", 0]
+						"vector": [
+							0,
+							"math.sin(query.anim_time*45)*2",
+							0
+						]
 					},
 					"scale": {
-						"vector": [1, 1, 1]
+						"vector": [
+							1,
+							1,
+							1
+						]
 					}
 				}
 			}

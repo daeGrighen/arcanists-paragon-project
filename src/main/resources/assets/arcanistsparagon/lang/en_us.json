@@ -8,6 +8,7 @@
   "block.arcanistsparagon.ritual_table": "Exhalting Table",
   "block.arcanistsparagon.ritual_pedestal": "Ritual Pedestal",
   "block.arcanistsparagon.ritual_core": "Ritual Core",
+  "block.arcanistsparagon.ritual_core_base": "Ritual Core Base",
 
   "itemgroup.arcanist": "Arcanist's Paragon"
 }

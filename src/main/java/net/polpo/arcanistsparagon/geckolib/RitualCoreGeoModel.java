@@ -1,9 +1,11 @@
 package net.polpo.arcanistsparagon.geckolib;
 
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
 import net.polpo.arcanistsparagon.block.custom.RitualCoreBlock;
 import net.polpo.arcanistsparagon.block.entity.RitualCoreBlockEntity;
+import software.bernie.example.block.entity.FertilizerBlockEntity;
 import software.bernie.geckolib.GeckoLib;
 import software.bernie.geckolib.model.GeoModel;
 
@@ -25,5 +27,10 @@ public class RitualCoreGeoModel extends GeoModel<RitualCoreBlockEntity> {
     @Override
     public Identifier getAnimationResource(RitualCoreBlockEntity animatable) {
         return this.animationResource;
+    }
+
+    @Override
+    public RenderLayer getRenderType(RitualCoreBlockEntity animatable, Identifier texture) {
+        return RenderLayer.getEntityTranslucent(getTextureResource(animatable));
     }
 }

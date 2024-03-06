@@ -13,6 +13,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.block.custom.RitualCoreBaseBlock;
 import net.polpo.arcanistsparagon.block.custom.RitualCoreBlock;
 import net.polpo.arcanistsparagon.block.custom.RitualPedestalBlock;
 import net.polpo.arcanistsparagon.block.custom.RitualTableBlock;
@@ -31,6 +32,9 @@ public class ModBlocks {
 
     public static final Block RITUAL_CORE = registerBlock("ritual_core",
             new RitualCoreBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
+
+    public static final Block RITUAL_CORE_BASE_BLOCK = registerBlock("ritual_core_base",
+            new RitualCoreBaseBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);
