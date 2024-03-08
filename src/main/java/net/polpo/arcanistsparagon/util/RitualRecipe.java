@@ -3,9 +3,12 @@ package net.polpo.arcanistsparagon.util;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
+import net.polpo.arcanistsparagon.ArcanistsParagon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RitualRecipe {
     private List<ItemStack> ingredients;
@@ -44,7 +47,12 @@ public class RitualRecipe {
     }
 
     public boolean recipeMatches(List<ItemStack> providedItems, BlockState providedCatalyst){
-        return containsAll(this.getIngredients(), providedItems) && providedCatalyst == this.getCatalyst();
+        boolean isCatalystGood = (providedCatalyst == getCatalyst());
+        boolean isRecipeGood = containsAll(getIngredients(), providedItems);
+        ArcanistsParagon.LOGGER.info("recipe match:" + isRecipeGood + isCatalystGood);
+        ArcanistsParagon.LOGGER.info("given: " + providedItems);
+        ArcanistsParagon.LOGGER.info("recipe: " + getIngredients());
+        return (isRecipeGood && isCatalystGood);
     }
 
 
@@ -57,7 +65,7 @@ public class RitualRecipe {
         for (ItemStack item : list2) {
             boolean found = false;
             for (int i = 0; i < tempList.size(); i++) {
-                if (ItemStack.areEqual(tempList.get(i), item)) {
+                if (ItemStack.areItemsEqual(tempList.get(i), item.copyWithCount(1))) {
                     tempList.remove(i);
                     found = true;
                     break;
@@ -70,4 +78,5 @@ public class RitualRecipe {
 
         return true;
     }
+
 }

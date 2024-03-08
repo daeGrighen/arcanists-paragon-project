@@ -3,11 +3,17 @@ package net.polpo.arcanistsparagon.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.command.ParticleCommand;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
@@ -27,7 +33,6 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -40,15 +45,20 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
 
-    private final RitualRecipe BLAZING_COAL_RECIPE = new RitualRecipe(List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
+    private static final RitualRecipe BLAZING_COAL_RECIPE = new RitualRecipe(List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
             Blocks.MAGMA_BLOCK.getDefaultState(), ModItems.BLAZING_COAL.getDefaultStack());
+    private static final RitualRecipe ARCANE_CORE_RECIPE = new RitualRecipe(List.of(Items.ANDESITE.getDefaultStack(), ModItems.ASPHODITE_CHUNK.getDefaultStack(), Items.IRON_NUGGET.getDefaultStack(), Items.ENDER_PEARL.getDefaultStack()),
+            Blocks.OBSIDIAN.getDefaultState(), ModItems.ARCANE_CORE.getDefaultStack());
 
-    private final List<RitualRecipe> RECIPES = List.of(BLAZING_COAL_RECIPE);
+    private static final List<RitualRecipe> RECIPES = List.of(
+            BLAZING_COAL_RECIPE,
+            ARCANE_CORE_RECIPE);
 
 
     public RitualCoreBlock(Settings settings) {
         super(settings);
     }
+
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
@@ -88,44 +98,74 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
 
 
 
+
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) return ActionResult.SUCCESS;
 
-        if(isStructureCorrect(world, pos)){
-            ArcanistsParagon.LOGGER.info("Structure is assembled!");
-            List<ItemStack> itemList = List.of(
-                    ((Inventory) world.getBlockEntity(pos.north(3))).getStack(0),
-                    ((Inventory) world.getBlockEntity(pos.south(3))).getStack(0),
-                    ((Inventory) world.getBlockEntity(pos.east(3))).getStack(0),
-                    ((Inventory) world.getBlockEntity(pos.west(3))).getStack(0)
-                    );
-            ItemStack recipeResult =  getPossibleRecipe(itemList, world.getBlockState(pos.down()));
+        if(player.getMainHandStack().isOf(Items.STICK)) {
+            if (isStructureCorrect(world, pos)) {
+                ArcanistsParagon.LOGGER.info("Structure is assembled!");
 
-            if (!recipeResult.isEmpty()){
-                ArcanistsParagon.LOGGER.info("Recipe matches!");
                 Inventory northPedestal = (Inventory) world.getBlockEntity(pos.north(3));
                 Inventory southPedestal = (Inventory) world.getBlockEntity(pos.south(3));
                 Inventory eastPedestal = (Inventory) world.getBlockEntity(pos.east(3));
                 Inventory westPedestal = (Inventory) world.getBlockEntity(pos.west(3));
 
-                northPedestal.removeStack(0, 1);
-                southPedestal.removeStack(0, 1);
-                eastPedestal.removeStack(0, 1);
-                westPedestal.removeStack(0, 1);
+                List<ItemStack> itemList = List.of(
+                        northPedestal.getStack(0),
+                        southPedestal.getStack(0),
+                        eastPedestal.getStack(0),
+                        westPedestal.getStack(0)
+                );
 
-                double x = pos.getX();
-                double y = pos.getY()+1;
-                double z = pos.getZ();
+                ItemStack recipeResult = getPossibleRecipe(itemList, world.getBlockState(pos.down()), world);
+                ArcanistsParagon.LOGGER.info(recipeResult.toString());
 
-                ItemEntity item_res_entity = new ItemEntity(world, x, y, z, recipeResult);
-                world.spawnEntity(item_res_entity);
-                ArcanistsParagon.LOGGER.info("Entity is (likely) spawned!");
+                if (!recipeResult.isEmpty()) {
+
+                    int maxDrops = getMaxCraft(itemList);
+                    northPedestal.removeStack(0, maxDrops);
+                    southPedestal.removeStack(0, maxDrops);
+                    eastPedestal.removeStack(0, maxDrops);
+                    westPedestal.removeStack(0, maxDrops);
+
+                    northPedestal.markDirty();
+                    southPedestal.markDirty();
+                    eastPedestal.markDirty();
+                    westPedestal.markDirty();
+
+
+                    double x = pos.getX();
+                    double y = pos.getY() + 1;
+                    double z = pos.getZ();
+
+                    ItemEntity itemResEntity = new ItemEntity(world, x, y, z, recipeResult.copyWithCount(maxDrops));
+
+                    ArcanistsParagon.LOGGER.info("3");
+                    world.spawnEntity(itemResEntity);
+                    world.playSound(null, pos,
+                            SoundEvents.ENTITY_PARROT_IMITATE_WARDEN,
+                            SoundCategory.BLOCKS, 2f, 15f);
+
+
+                    ArcanistsParagon.LOGGER.info("Entity is (likely) spawned!");
+                }
+
+
             }
-
-
         }
         return ActionResult.SUCCESS;
+    }
+
+    private int getMaxCraft(List<ItemStack> itemList) {
+        int minCount = 64;
+        for (ItemStack item : itemList){
+            if(item.getCount() < minCount)
+                minCount = item.getCount();
+        }
+        return minCount;
     }
 
     private boolean isStructureCorrect(World world, BlockPos pos) {
@@ -133,14 +173,22 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
                 world.getBlockState(pos.east(3)).isOf(ModBlocks.RITUAL_PEDESTAL) && world.getBlockState(pos.west(3)).isOf(ModBlocks.RITUAL_PEDESTAL);
     }
 
-    private ItemStack getPossibleRecipe(List<ItemStack> itemList, BlockState blockState) {
-        for(RitualRecipe recipe : RECIPES){
-            if(recipe.recipeMatches(itemList, blockState)){
-                return recipe.getResult();
+    private ItemStack getPossibleRecipe(List<ItemStack> itemList, BlockState blockState, World world) {
+        if (!world.isClient()) {
+            ArcanistsParagon.LOGGER.info("getPossibleRecipe called");
+            for (RitualRecipe recipe : RECIPES) {
+                if (recipe.recipeMatches(itemList, blockState)) {
+                    ArcanistsParagon.LOGGER.info(recipe.getResult().toString());
+                    return recipe.getResult();
+                }
             }
+            ArcanistsParagon.LOGGER.info("no match!");
         }
         return ItemStack.EMPTY;
     }
 
+    private List<RitualRecipe> getRecipes() {
+        return RECIPES;
+    }
 
 }
