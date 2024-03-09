@@ -15,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.command.ParticleCommand;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -49,14 +50,24 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
 
-    private static final RitualRecipe BLAZING_COAL_RECIPE = new RitualRecipe(List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
+    private static final RitualRecipe BLAZING_COAL_RECIPE = new RitualRecipe(
+            List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
             Blocks.MAGMA_BLOCK.getDefaultState(), ModItems.BLAZING_COAL.getDefaultStack());
-    private static final RitualRecipe ARCANE_CORE_RECIPE = new RitualRecipe(List.of(Items.ANDESITE.getDefaultStack(), ModItems.ASPHODITE_CHUNK.getDefaultStack(), Items.IRON_NUGGET.getDefaultStack(), Items.ENDER_PEARL.getDefaultStack()),
+    private static final RitualRecipe ARCANE_CORE_RECIPE = new RitualRecipe(
+            List.of(Items.ANDESITE.getDefaultStack(), ModItems.ASPHODITE_CHUNK.getDefaultStack(), Items.IRON_NUGGET.getDefaultStack(), Items.ENDER_PEARL.getDefaultStack()),
             Blocks.OBSIDIAN.getDefaultState(), ModItems.ARCANE_CORE.getDefaultStack());
+
+    private static final RitualRecipe DEBUG = new RitualRecipe(
+            List.of(ModItems.BLAZING_COAL.getDefaultStack(),
+                    ItemStack.EMPTY,
+                    ItemStack.EMPTY,
+                    ItemStack.EMPTY),
+            Blocks.MAGMA_BLOCK.getDefaultState(), ModItems.BLAZING_COAL.getDefaultStack());
 
     private static final List<RitualRecipe> RECIPES = List.of(
             BLAZING_COAL_RECIPE,
-            ARCANE_CORE_RECIPE);
+            ARCANE_CORE_RECIPE,
+            DEBUG);
 
 
     public RitualCoreBlock(Settings settings) {
@@ -150,22 +161,22 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
 
                     ItemEntity itemResEntity = new ItemEntity(world, x, y+0.5, z, recipeResult.copyWithCount(maxDrops));
 
-                    ArcanistsParagon.LOGGER.info("3");
+                    //ArcanistsParagon.LOGGER.info("3");
                     world.spawnEntity(itemResEntity);
                     world.playSound(null, pos,
                             SoundEvents.ENTITY_PARROT_IMITATE_WARDEN,
                             SoundCategory.BLOCKS, 2f, 15f);
 
-                    // NO! BAD CODE!
-                    //https://gist.github.com/natanfudge/6be2662ce8395bb14dc5c48157217e9e
+
+
                     Vec3d pedestalPos = new Vec3d(x, y, z);
                     Vec3d northPedestalPos = new Vec3d(x+3, y, z);
-                    int particleAmount = (int) (pedestalPos.distanceTo(northPedestalPos) * 4);
+                    int particleAmount = (int) (pedestalPos.distanceTo(northPedestalPos) * 5);
+                    ServerWorld serverWorld = (ServerWorld) world;
 
                     for (int i = 0; i < particleAmount; i++) {
                         Vec3d particlePos = pedestalPos.lerp(northPedestalPos, i / (float) particleAmount);
-
-                        world.addImportantParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.RED_CONCRETE.getDefaultState()), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
+                        serverWorld.spawnParticles(ParticleTypes.DRIPPING_OBSIDIAN_TEAR, particlePos.x, particlePos.y+0.5, particlePos.z, 1, 0, 0, 0, 0);
                     }
 
                     ArcanistsParagon.LOGGER.info("Entity is (likely) spawned!");
