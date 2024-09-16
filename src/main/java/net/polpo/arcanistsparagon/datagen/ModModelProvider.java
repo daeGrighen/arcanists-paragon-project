@@ -28,6 +28,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ARCANE_CORE, Models.GENERATED);
         itemModelGenerator.register(ModItems.ASPHODITE_CHUNK, Models.GENERATED);
         itemModelGenerator.register(ModItems.DIVINING_ROD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.INKY_CORE, Models.GENERATED);
 
     }
 }

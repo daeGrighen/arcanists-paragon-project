@@ -11,6 +11,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
 import net.polpo.arcanistsparagon.item.custom.DiviningRodItem;
+import net.polpo.arcanistsparagon.item.custom.InkyCoreItem;
 
 public class ModItems {
 
@@ -20,6 +21,7 @@ public class ModItems {
             new DiviningRodItem(new FabricItemSettings().maxDamage(64)));
 
     public static final Item BLAZING_COAL = registerItem("blazing_coal", new Item(new FabricItemSettings()));
+    public static final Item INKY_CORE = registerItem("inky_core", new InkyCoreItem(new FabricItemSettings()));
 
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){

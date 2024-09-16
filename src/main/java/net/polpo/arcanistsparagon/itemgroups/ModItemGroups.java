@@ -23,11 +23,13 @@ public class ModItemGroups {
                         entries.add(ModItems.ASPHODITE_CHUNK);
                         entries.add(ModItems.DIVINING_ROD);
                         entries.add(ModItems.BLAZING_COAL);
+                        entries.add(ModItems.INKY_CORE);
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
                         entries.add(ModBlocks.RITUAL_TABLE);
                         entries.add(ModBlocks.RITUAL_PEDESTAL);
                         entries.add(ModBlocks.RITUAL_CORE);
+
                         //entries.add(ModBlocks.RITUAL_CORE_BASE_BLOCK); hihihi I love programming!
 
                     }).build());

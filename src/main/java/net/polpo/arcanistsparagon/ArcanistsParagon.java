@@ -3,6 +3,7 @@ package net.polpo.arcanistsparagon;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.block.entity.ModBlockEntities;
 import net.polpo.arcanistsparagon.item.ModFuelItems;
@@ -16,6 +17,8 @@ import org.slf4j.LoggerFactory;
 public class ArcanistsParagon implements ModInitializer {
 	public static final String MOD_ID = "arcanistsparagon";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final Identifier PLAY_PARTICLE_PACKET_ID = Identifier.of(ArcanistsParagon.MOD_ID, "particle");
+	public static final Identifier PLAY_PARTICLES_PACKET_ID = Identifier.of(ArcanistsParagon.MOD_ID, "particle");
 
 
 	@Override

@@ -1,20 +1,18 @@
 package net.polpo.arcanistsparagon.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.BlockStateParticleEffect;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.command.ParticleCommand;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -28,6 +26,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.util.ArcanistsParagonParticleDecoder;
 import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.block.entity.RitualCoreBlockEntity;
 import net.polpo.arcanistsparagon.item.ModItems;
@@ -37,6 +36,7 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -48,10 +48,14 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
             Block.createCuboidShape(6, 2, 6, 10, 4, 10)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
+    private static final String particle = ParticleTypes.ASH.asString();
 
-    private static final RitualRecipe BLAZING_COAL_RECIPE = new RitualRecipe(List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
+    private static final RitualRecipe BLAZING_COAL_RECIPE =
+            new RitualRecipe(List.of(Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.COAL.getDefaultStack(), Items.BLAZE_POWDER.getDefaultStack()),
             Blocks.MAGMA_BLOCK.getDefaultState(), ModItems.BLAZING_COAL.getDefaultStack());
-    private static final RitualRecipe ARCANE_CORE_RECIPE = new RitualRecipe(List.of(Items.ANDESITE.getDefaultStack(), ModItems.ASPHODITE_CHUNK.getDefaultStack(), Items.IRON_NUGGET.getDefaultStack(), Items.ENDER_PEARL.getDefaultStack()),
+
+    private static final RitualRecipe ARCANE_CORE_RECIPE =
+            new RitualRecipe(List.of(Items.ANDESITE.getDefaultStack(), ModItems.ASPHODITE_CHUNK.getDefaultStack(), Items.IRON_NUGGET.getDefaultStack(), Items.ENDER_PEARL.getDefaultStack()),
             Blocks.OBSIDIAN.getDefaultState(), ModItems.ARCANE_CORE.getDefaultStack());
 
     private static final List<RitualRecipe> RECIPES = List.of(
@@ -144,11 +148,11 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
                     westPedestal.markDirty();
 
 
-                    double x = pos.getX();
-                    double y = pos.getY();
-                    double z = pos.getZ();
+                    double x = pos.getX() +0.5;
+                    double y = pos.getY() +0.9;
+                    double z = pos.getZ() +0.5;
 
-                    ItemEntity itemResEntity = new ItemEntity(world, x, y+0.5, z, recipeResult.copyWithCount(maxDrops));
+                    ItemEntity itemResEntity = new ItemEntity(world, x, y +2.0, z, recipeResult.copyWithCount(maxDrops));
 
                     ArcanistsParagon.LOGGER.info("3");
                     world.spawnEntity(itemResEntity);
@@ -156,16 +160,30 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
                             SoundEvents.ENTITY_PARROT_IMITATE_WARDEN,
                             SoundCategory.BLOCKS, 2f, 15f);
 
-                    // NO! BAD CODE!
-                    //https://gist.github.com/natanfudge/6be2662ce8395bb14dc5c48157217e9e
-                    Vec3d pedestalPos = new Vec3d(x, y, z);
-                    Vec3d northPedestalPos = new Vec3d(x+3, y, z);
-                    int particleAmount = (int) (pedestalPos.distanceTo(northPedestalPos) * 4);
+                    Vec3d pedestalPos = new Vec3d(x, y +2.0, z);
+                    Vec3d northPedestalPos = new Vec3d(x, y, z + 3);
+                    Vec3d eastPedestalPos = new Vec3d(x + 3, y, z);
+                    Vec3d southPedestalPos = new Vec3d(x, y, z - 3);
+                    Vec3d westPedestalPos = new Vec3d(x - 3, y, z);
 
-                    for (int i = 0; i < particleAmount; i++) {
-                        Vec3d particlePos = pedestalPos.lerp(northPedestalPos, i / (float) particleAmount);
+                    List<Vec3d> pedestalPositions = new ArrayList<>();
 
-                        world.addImportantParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.RED_CONCRETE.getDefaultState()), particlePos.x, particlePos.y, particlePos.z, 0, 0, 0);
+                    pedestalPositions.add(northPedestalPos);
+                    pedestalPositions.add(eastPedestalPos);
+                    pedestalPositions.add(southPedestalPos);
+                    pedestalPositions.add(westPedestalPos);
+                    int particleAmount = (int) (pedestalPos.distanceTo(northPedestalPos) * 6);
+
+                    for(Vec3d vec : pedestalPositions) {
+                        for (int i = 0; i < particleAmount; i++) {
+                            Vec3d particlePos = pedestalPos.lerp(vec, i / (float) particleAmount);
+                            PacketByteBuf buf = PacketByteBufs.create();
+
+                            buf.writeVec3d(particlePos);
+                            buf.writeInt(ArcanistsParagonParticleDecoder.HONEY);
+
+                            send((ServerPlayerEntity) player, buf);
+                        }
                     }
 
                     ArcanistsParagon.LOGGER.info("Entity is (likely) spawned!");
@@ -207,6 +225,10 @@ public class RitualCoreBlock extends BlockWithEntity implements GeoAnimatable{
 
     private List<RitualRecipe> getRecipes() {
         return RECIPES;
+    }
+
+    private void send(ServerPlayerEntity user, PacketByteBuf buf){
+        ServerPlayNetworking.send((ServerPlayerEntity) user, ArcanistsParagon.PLAY_PARTICLE_PACKET_ID, buf);
     }
 
 }
