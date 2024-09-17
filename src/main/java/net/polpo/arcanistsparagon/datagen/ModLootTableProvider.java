@@ -11,14 +11,17 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.StatePredicate;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.block.ModBlocks;
+import net.polpo.arcanistsparagon.block.custom.RisingbulbCropBlock;
 import net.polpo.arcanistsparagon.item.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,6 +39,10 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RITUAL_PEDESTAL);
         addDrop(ModBlocks.RITUAL_TABLE);
         addDrop(ModBlocks.RITUAL_CORE);
+
+        BlockStatePropertyLootCondition.Builder risingbulbBuilder = BlockStatePropertyLootCondition.builder(ModBlocks.RISINGBULB_CROP).properties(StatePredicate.Builder.create()
+                .exactMatch(RisingbulbCropBlock.AGE, 8));
+        addDrop(ModBlocks.RISINGBULB_CROP, cropDrops(ModBlocks.RISINGBULB_CROP, ModItems.RISINGBULB, ModItems.RISINGBULB_CLOVE, risingbulbBuilder));
     }
 
     public LootTable.Builder multipleDropOreBlocks(Block drop, Item item, float min, float max) {

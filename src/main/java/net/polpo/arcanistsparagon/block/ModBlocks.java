@@ -13,16 +13,13 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
-import net.polpo.arcanistsparagon.block.custom.RitualCoreBaseBlock;
-import net.polpo.arcanistsparagon.block.custom.RitualCoreBlock;
-import net.polpo.arcanistsparagon.block.custom.RitualPedestalBlock;
-import net.polpo.arcanistsparagon.block.custom.RitualTableBlock;
+import net.polpo.arcanistsparagon.block.custom.*;
 
 public class ModBlocks {
 
     public static final Block ASPHODITE_ORE = registerBlock("asphodite_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(2,5),
-                    FabricBlockSettings.copyOf(Blocks.END_STONE).strength(2f).slipperiness(2f).sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+                    FabricBlockSettings.copyOf(Blocks.END_STONE).strength(2f).slipperiness(1.5f).sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
     public static final Block RITUAL_TABLE = registerBlock("ritual_table",
             new RitualTableBlock(FabricBlockSettings.copyOf(Blocks.DIORITE).nonOpaque()));
@@ -35,6 +32,9 @@ public class ModBlocks {
 
     public static final Block RITUAL_CORE_BASE_BLOCK = registerBlock("ritual_core_base",
             new RitualCoreBaseBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
+
+    public static final Block RISINGBULB_CROP = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID,"risingbulb_crop"),
+            new RisingbulbCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

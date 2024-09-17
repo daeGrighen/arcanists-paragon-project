@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "arcanistsparagon:block/risingbulb_crop_stage1"
+  }
+}

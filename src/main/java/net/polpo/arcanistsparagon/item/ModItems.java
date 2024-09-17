@@ -3,6 +3,7 @@ package net.polpo.arcanistsparagon.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -10,8 +11,11 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
+import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.item.custom.DiviningRodItem;
 import net.polpo.arcanistsparagon.item.custom.InkyCoreItem;
+import net.polpo.arcanistsparagon.item.custom.ScionbloomItem;
+import net.polpo.arcanistsparagon.item.custom.SnifferTreatItem;
 
 public class ModItems {
 
@@ -22,7 +26,10 @@ public class ModItems {
 
     public static final Item BLAZING_COAL = registerItem("blazing_coal", new Item(new FabricItemSettings()));
     public static final Item INKY_CORE = registerItem("inky_core", new InkyCoreItem(new FabricItemSettings()));
-
+    public static final Item SNIFFER_TREAT = registerItem("sniffer_treat", new SnifferTreatItem(new FabricItemSettings()));
+    public static final Item RISINGBULB = registerItem("risingbulb", new Item(new FabricItemSettings()));
+    public static final Item RISINGBULB_CLOVE = registerItem("risingbulb_clove", new AliasedBlockItem(ModBlocks.RISINGBULB_CROP, new FabricItemSettings()));
+    public static final Item SCIONBLOOM = registerItem("scionbloom", new ScionbloomItem(new FabricItemSettings()));
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){
     }

@@ -24,6 +24,10 @@ public class ModItemGroups {
                         entries.add(ModItems.DIVINING_ROD);
                         entries.add(ModItems.BLAZING_COAL);
                         entries.add(ModItems.INKY_CORE);
+                        entries.add(ModItems.SNIFFER_TREAT);
+                        entries.add(ModItems.RISINGBULB);
+                        entries.add(ModItems.RISINGBULB_CLOVE);
+                        entries.add(ModItems.SCIONBLOOM);
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
                         entries.add(ModBlocks.RITUAL_TABLE);

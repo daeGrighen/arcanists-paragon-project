@@ -1,13 +1,16 @@
 package net.polpo.arcanistsparagon;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.Vec3d;
+import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.block.entity.ModBlockEntities;
 import net.polpo.arcanistsparagon.block.entity.renderer.PedestalBlockEntityRenderer;
 import net.polpo.arcanistsparagon.block.entity.renderer.RitualCoreEntityRenderer;
@@ -21,6 +24,7 @@ public class ArcanistsParagonClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         HandledScreens.register(ModScreenHandlers.RITUAL_TABLE_SCREEN_HANDLER, RitualTableScreen::new);
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RISINGBULB_CROP, RenderLayer.getCutout());
 
         BlockEntityRendererFactories.register(ModBlockEntities.RITUAL_PEDESTAL_BLOCK_ENTITY, PedestalBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.RITUAL_CORE_BLOCK_ENTITY, RitualCoreEntityRenderer::new);
@@ -42,28 +46,5 @@ public class ArcanistsParagonClient implements ClientModInitializer {
                 client.world.addParticle(particle, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
             });
         });
-
-        ClientPlayNetworking.registerGlobalReceiver(ArcanistsParagon.PLAY_PARTICLES_PACKET_ID, (client, handler, buf, responseSender) -> {
-            client.execute(() -> {
-                int points = buf.readInt();
-                DefaultParticleType particle = decoder.decode(buf.readInt());
-                if (particle == null){
-                    ArcanistsParagon.LOGGER.info("null particle");
-                    return;
-                }
-
-                Vec3d pos = null;
-                for(int i=0; i<points; i++){
-                    pos = buf.readVec3d();
-                    client.world.addParticle(particle, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
-                }
-
-            });
-        });
-
-
-
-
-
     }
 }

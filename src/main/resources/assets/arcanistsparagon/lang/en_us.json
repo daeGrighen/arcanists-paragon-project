@@ -4,12 +4,18 @@
   "item.arcanistsparagon.divining_rod": "Divining Rod",
   "item.arcanistsparagon.blazing_coal": "Blazing Coal",
   "item.arcanistsparagon.inky_core": "Inky Core",
+  "item.arcanistsparagon.sniffer_treat": "Sniffer Treat",
+  "item.arcanistsparagon.scionbloom": "Scionbloom",
+  "item.arcanistsparagon.risingbulb": "Risingbulb Head",
+  "item.arcanistsparagon.risingbulb_clove": "Risingbulb Clove",
 
   "block.arcanistsparagon.asphodite_ore": "Asphodite Ore",
   "block.arcanistsparagon.ritual_table": "Exhalting Table",
   "block.arcanistsparagon.ritual_pedestal": "Ritual Pedestal",
   "block.arcanistsparagon.ritual_core": "Ritual Core",
   "block.arcanistsparagon.ritual_core_base": "Ritual Core Base",
+
+  "trim_material.arcanistsparagon.asphodite": "Asphodite Material",
 
   "itemgroup.arcanist": "Arcanist's Paragon"
 }
