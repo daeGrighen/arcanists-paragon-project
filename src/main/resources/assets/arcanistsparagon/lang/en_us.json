@@ -5,7 +5,7 @@
   "item.arcanistsparagon.blazing_coal": "Blazing Coal",
   "item.arcanistsparagon.inky_core": "Inky Core",
   "item.arcanistsparagon.sniffer_treat": "Sniffer Treat",
-  "item.arcanistsparagon.scionbloom": "Scionbloom",
+
   "item.arcanistsparagon.risingbulb": "Risingbulb Head",
   "item.arcanistsparagon.risingbulb_clove": "Risingbulb Clove",
 
@@ -14,6 +14,8 @@
   "block.arcanistsparagon.ritual_pedestal": "Ritual Pedestal",
   "block.arcanistsparagon.ritual_core": "Ritual Core",
   "block.arcanistsparagon.ritual_core_base": "Ritual Core Base",
+  "block.arcanistsparagon.scionbloom_blossom": "Scionbloom",
+  "block.arcanistsparagon.potted_scionbloom_blossom": "Potted Scionbloom",
 
   "trim_material.arcanistsparagon.asphodite": "Asphodite Material",
 

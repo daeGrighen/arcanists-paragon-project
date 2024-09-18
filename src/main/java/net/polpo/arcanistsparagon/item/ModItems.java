@@ -29,7 +29,7 @@ public class ModItems {
     public static final Item SNIFFER_TREAT = registerItem("sniffer_treat", new SnifferTreatItem(new FabricItemSettings()));
     public static final Item RISINGBULB = registerItem("risingbulb", new Item(new FabricItemSettings()));
     public static final Item RISINGBULB_CLOVE = registerItem("risingbulb_clove", new AliasedBlockItem(ModBlocks.RISINGBULB_CROP, new FabricItemSettings()));
-    public static final Item SCIONBLOOM = registerItem("scionbloom", new ScionbloomItem(new FabricItemSettings()));
+    //public static final Item SCIONBLOOM = registerItem("scionbloom", new ScionbloomItem(new FabricItemSettings()));
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){
     }

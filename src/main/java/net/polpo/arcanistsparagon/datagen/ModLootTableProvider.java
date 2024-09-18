@@ -39,6 +39,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RITUAL_PEDESTAL);
         addDrop(ModBlocks.RITUAL_TABLE);
         addDrop(ModBlocks.RITUAL_CORE);
+        addDrop(ModBlocks.SCIONBLOOM_BLOSSOM);
+        addPottedPlantDrops(ModBlocks.POTTED_SCIONBLOOM_BLOSSOM);
 
         BlockStatePropertyLootCondition.Builder risingbulbBuilder = BlockStatePropertyLootCondition.builder(ModBlocks.RISINGBULB_CROP).properties(StatePredicate.Builder.create()
                 .exactMatch(RisingbulbCropBlock.AGE, 8));

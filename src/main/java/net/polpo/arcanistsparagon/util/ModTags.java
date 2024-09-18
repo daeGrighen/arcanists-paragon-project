@@ -14,6 +14,8 @@ public class ModTags {
         public static final TagKey<Block> DIVINER_ROD_FINDABLE_BLOCKS =
                 createTag("diviner_rod_findable_blocks");
 
+        public static final TagKey<Block> LOW_ENTROPY_BLOCKS = createTag("low_entropy_blocks");
+
 
         private static TagKey<Block> createTag(String name){
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, name));

@@ -3,6 +3,9 @@ package net.polpo.arcanistsparagon;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.block.entity.ModBlockEntities;
@@ -22,6 +25,7 @@ public class ArcanistsParagon implements ModInitializer {
 	public static final Identifier PLAY_PARTICLES_PACKET_ID = Identifier.of(ArcanistsParagon.MOD_ID, "particle");
 
 
+
 	@Override
 	public void onInitialize() {
 
@@ -38,5 +42,7 @@ public class ArcanistsParagon implements ModInitializer {
 		ModRecipes.registerRecipes();
 
 		ModLootTableModifiers.modifyLootTables();
+
+
 	}
 }

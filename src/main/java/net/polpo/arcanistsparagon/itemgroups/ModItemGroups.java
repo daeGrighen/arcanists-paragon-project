@@ -27,12 +27,13 @@ public class ModItemGroups {
                         entries.add(ModItems.SNIFFER_TREAT);
                         entries.add(ModItems.RISINGBULB);
                         entries.add(ModItems.RISINGBULB_CLOVE);
-                        entries.add(ModItems.SCIONBLOOM);
+                        //entries.add(ModItems.SCIONBLOOM);
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
                         entries.add(ModBlocks.RITUAL_TABLE);
                         entries.add(ModBlocks.RITUAL_PEDESTAL);
                         entries.add(ModBlocks.RITUAL_CORE);
+                        entries.add(ModBlocks.SCIONBLOOM_BLOSSOM);
 
                         //entries.add(ModBlocks.RITUAL_CORE_BASE_BLOCK); hihihi I love programming!
 

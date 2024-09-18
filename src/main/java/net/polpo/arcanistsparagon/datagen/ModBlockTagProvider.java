@@ -2,11 +2,14 @@ package net.polpo.arcanistsparagon.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.polpo.arcanistsparagon.ArcanistsParagon;
 import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.util.ModTags;
 
@@ -21,6 +24,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         getOrCreateTagBuilder(ModTags.Blocks.DIVINER_ROD_FINDABLE_BLOCKS)
                 .add(ModBlocks.ASPHODITE_ORE)
+                .add(Blocks.ANCIENT_DEBRIS)
+                .add(Blocks.NETHER_QUARTZ_ORE)
                 .forceAddTag(BlockTags.COAL_ORES)
                 .forceAddTag(BlockTags.EMERALD_ORES)
                 .forceAddTag(BlockTags.REDSTONE_ORES)
@@ -37,5 +42,12 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(TagKey.of(RegistryKeys.BLOCK, new Identifier("fabric", "needs_tool_level_4")))
                 .add(ModBlocks.ASPHODITE_ORE);
+
+        getOrCreateTagBuilder(ModTags.Blocks.LOW_ENTROPY_BLOCKS)
+                .add(Blocks.QUARTZ_BLOCK)
+                .add(Blocks.QUARTZ_BRICKS)
+                .add(Blocks.SMOOTH_QUARTZ)
+                .add(Blocks.QUARTZ_PILLAR)
+                .add(Blocks.CHISELED_QUARTZ_BLOCK);
     }
 }

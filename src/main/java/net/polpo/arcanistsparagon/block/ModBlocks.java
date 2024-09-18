@@ -2,9 +2,8 @@ package net.polpo.arcanistsparagon.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.*;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -35,6 +34,14 @@ public class ModBlocks {
 
     public static final Block RISINGBULB_CROP = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID,"risingbulb_crop"),
             new RisingbulbCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
+
+
+    public static final Block SCIONBLOOM_BLOSSOM = registerBlock("scionbloom_blossom",
+            new ScionbloomBlossomBlock(StatusEffects.UNLUCK, 10,
+                    FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
+
+    public static final Block POTTED_SCIONBLOOM_BLOSSOM = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, "potted_scionbloom_blossom"),
+            new FlowerPotBlock(SCIONBLOOM_BLOSSOM, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

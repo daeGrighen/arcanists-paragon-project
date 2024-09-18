@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "arcanistsparagon:asphodite_ore",
+    "minecraft:ancient_debris",
+    "minecraft:nether_quartz_ore",
     "#minecraft:coal_ores",
     "#minecraft:emerald_ores",
     "#minecraft:redstone_ores",
