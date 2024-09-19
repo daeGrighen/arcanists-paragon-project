@@ -32,9 +32,20 @@ public class ModBlocks {
     public static final Block RITUAL_CORE_BASE_BLOCK = registerBlock("ritual_core_base",
             new RitualCoreBaseBlock(FabricBlockSettings.copyOf(Blocks.BLACKSTONE).nonOpaque()));
 
+    public static final Block ENTROPIC_QUARTZ_1 = registerBlock("entropic_quartz_1",
+            new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+    public static final Block ENTROPIC_QUARTZ_2 = registerBlock("entropic_quartz_2",
+            new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+    public static final Block ENTROPIC_QUARTZ_3 = registerBlock("entropic_quartz_3",
+            new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+    public static final Block ENTROPIC_QUARTZ_4 = registerBlock("entropic_quartz_4",
+            new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+
+
+
+
     public static final Block RISINGBULB_CROP = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID,"risingbulb_crop"),
             new RisingbulbCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
-
 
     public static final Block SCIONBLOOM_BLOSSOM = registerBlock("scionbloom_blossom",
             new ScionbloomBlossomBlock(StatusEffects.UNLUCK, 10,

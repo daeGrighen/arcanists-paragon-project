@@ -30,6 +30,7 @@ public class ModItems {
     public static final Item RISINGBULB = registerItem("risingbulb", new Item(new FabricItemSettings()));
     public static final Item RISINGBULB_CLOVE = registerItem("risingbulb_clove", new AliasedBlockItem(ModBlocks.RISINGBULB_CROP, new FabricItemSettings()));
     //public static final Item SCIONBLOOM = registerItem("scionbloom", new ScionbloomItem(new FabricItemSettings()));
+    public static final Item ENTROPIC_STAFF = registerItem("entropic_staff", new Item(new FabricItemSettings().maxCount(1)));
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){
     }

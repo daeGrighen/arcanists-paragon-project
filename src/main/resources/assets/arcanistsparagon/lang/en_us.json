@@ -5,6 +5,7 @@
   "item.arcanistsparagon.blazing_coal": "Blazing Coal",
   "item.arcanistsparagon.inky_core": "Inky Core",
   "item.arcanistsparagon.sniffer_treat": "Sniffer Treat",
+  "item.arcanistsparagon.entropic_staff": "Entropic Staff",
 
   "item.arcanistsparagon.risingbulb": "Risingbulb Head",
   "item.arcanistsparagon.risingbulb_clove": "Risingbulb Clove",
@@ -16,6 +17,10 @@
   "block.arcanistsparagon.ritual_core_base": "Ritual Core Base",
   "block.arcanistsparagon.scionbloom_blossom": "Scionbloom",
   "block.arcanistsparagon.potted_scionbloom_blossom": "Potted Scionbloom",
+  "block.arcanistsparagon.entropic_quartz_1": "Entropic Quartz",
+  "block.arcanistsparagon.entropic_quartz_2": "Entropic Quartz",
+  "block.arcanistsparagon.entropic_quartz_3": "Entropic Quartz",
+  "block.arcanistsparagon.entropic_quartz_4": "Entropic Quartz",
 
   "trim_material.arcanistsparagon.asphodite": "Asphodite Material",
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "arcanistsparagon:block/entropic_quartz_4"
+  }
+}

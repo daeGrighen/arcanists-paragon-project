@@ -1,0 +1,7 @@
+{
+    "overlay": {
+        "texture": "arcanistsparagon:block/entropy_3",
+        "emissive": true,
+        "transparency": "translucent"
+    }
+}

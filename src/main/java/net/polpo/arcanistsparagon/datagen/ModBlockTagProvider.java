@@ -45,9 +45,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
         getOrCreateTagBuilder(ModTags.Blocks.LOW_ENTROPY_BLOCKS)
                 .add(Blocks.QUARTZ_BLOCK)
-                .add(Blocks.QUARTZ_BRICKS)
-                .add(Blocks.SMOOTH_QUARTZ)
-                .add(Blocks.QUARTZ_PILLAR)
-                .add(Blocks.CHISELED_QUARTZ_BLOCK);
+                .add(Blocks.SMOOTH_QUARTZ);
+
     }
 }

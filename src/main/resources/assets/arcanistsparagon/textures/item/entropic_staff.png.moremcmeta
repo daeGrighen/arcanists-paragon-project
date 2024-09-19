@@ -1,0 +1,7 @@
+{
+  "overlay": {
+    "texture": "arcanistsparagon:item/entropic_staff_e",
+    "emissive": true,
+    "transparency": "translucent"
+  }
+}

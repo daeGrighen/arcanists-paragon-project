@@ -19,9 +19,18 @@ repositories {
 			includeGroup("com.eliotlash.mclib")
 		}
 	}
+	maven {
+		//name = 'MoreMcMeta'
+		url "https://maven.pkg.github.com/moremcmeta/emissive-plugin-fabric"
+		credentials {
+			username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+			password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+		}
+	}
 
 	dependencies {
 		modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.4:4.4.2'
+		modImplementation 'io.github.moremcmeta:emissive-plugin-fabric:1.20.4-2.0.4'
 	}
 }
 
