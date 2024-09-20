@@ -25,8 +25,11 @@ public class ArcanistsParagonClient implements ClientModInitializer {
 
         HandledScreens.register(ModScreenHandlers.RITUAL_TABLE_SCREEN_HANDLER, RitualTableScreen::new);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RISINGBULB_CROP, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.SCIONBLOOM_BLOSSOM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_SCIONBLOOM_BLOSSOM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WEANING_IMPATIENS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.POTTED_WEANING_IMPATIENS, RenderLayer.getCutout());
 
         BlockEntityRendererFactories.register(ModBlockEntities.RITUAL_PEDESTAL_BLOCK_ENTITY, PedestalBlockEntityRenderer::new);
         BlockEntityRendererFactories.register(ModBlockEntities.RITUAL_CORE_BLOCK_ENTITY, RitualCoreEntityRenderer::new);

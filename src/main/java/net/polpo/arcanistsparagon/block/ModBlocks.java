@@ -51,8 +51,14 @@ public class ModBlocks {
             new ScionbloomBlossomBlock(StatusEffects.UNLUCK, 10,
                     FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
 
+    public static final Block WEANING_IMPATIENS = registerBlock("weaning_impatiens",
+            new FlowerBlock(StatusEffects.ABSORPTION, 10,
+                    FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
+
     public static final Block POTTED_SCIONBLOOM_BLOSSOM = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, "potted_scionbloom_blossom"),
             new FlowerPotBlock(SCIONBLOOM_BLOSSOM, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()));
+    public static final Block POTTED_WEANING_IMPATIENS = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, "potted_weaning_impatiens"),
+            new FlowerPotBlock(WEANING_IMPATIENS, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()));
 
     private static Block registerBlock(String name, Block block){
         registerBlockItem(name, block);

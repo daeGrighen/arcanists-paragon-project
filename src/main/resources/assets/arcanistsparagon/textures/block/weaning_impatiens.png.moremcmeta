@@ -1,0 +1,7 @@
+{
+    "overlay": {
+        "texture": "arcanistsparagon:block/weaning_impatiens_e",
+        "emissive": true,
+        "transparency": "translucent"
+    }
+}

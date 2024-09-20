@@ -1,24 +1,2 @@
-NEED TO FIX ITEM RENDERING ON RITUAL CORE!
-prova a copiarlo da kaupen 1.19
-
-Fix ritual_core_base
-
-
-    private List<ItemStack> getItemsFromPedestals(World world, BlockPos pos) {
-        if (!world.isClient()) {
-            List<ItemStack> itemList = new ArrayList<>(4);
-
-            Inventory northPedestal = ;
-            Inventory southPedestal = (Inventory) world.getBlockEntity(pos.south(3));
-            Inventory eastPedestal = (Inventory) world.getBlockEntity(pos.east(3));
-            Inventory westPedestal = (Inventory) world.getBlockEntity(pos.west(3));
-
-            itemList.set(0, northPedestal.getStack(0));
-            itemList.set(1, southPedestal.getStack(0));
-            itemList.set(2, eastPedestal.getStack(0));
-            itemList.set(3, westPedestal.getStack(0));
-
-            return itemList;
-        }
-        return null;
-    }
+moremcmeta time textures
+json implementation for entropizing-deentropizing blocks

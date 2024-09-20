@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "arcanistsparagon:block/weaning_impatiens"
+  }
+}

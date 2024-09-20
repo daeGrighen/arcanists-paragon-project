@@ -15,6 +15,9 @@ public class ModTags {
                 createTag("diviner_rod_findable_blocks");
 
         public static final TagKey<Block> LOW_ENTROPY_BLOCKS = createTag("low_entropy_blocks");
+        public static final TagKey<Block> HIGH_ENTROPY_BLOCKS = createTag("high_entropy_blocks");
+        public static final TagKey<Block> ENTROPY_STORAGE_BLOCKS = createTag("entropy_storage_blocks");
+        public static final TagKey<Block> ENTROPIC_QUARTZ_BLOCKS = createTag("entropic_quartz_blocks");
 
 
         private static TagKey<Block> createTag(String name){

@@ -47,5 +47,18 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(Blocks.QUARTZ_BLOCK)
                 .add(Blocks.SMOOTH_QUARTZ);
 
+        getOrCreateTagBuilder(ModTags.Blocks.HIGH_ENTROPY_BLOCKS)
+                .add(ModBlocks.ENTROPIC_QUARTZ_4);
+
+        getOrCreateTagBuilder(ModTags.Blocks.ENTROPIC_QUARTZ_BLOCKS)
+                .add(ModBlocks.ENTROPIC_QUARTZ_1)
+                .add(ModBlocks.ENTROPIC_QUARTZ_2)
+                .add(ModBlocks.ENTROPIC_QUARTZ_3)
+                .add(ModBlocks.ENTROPIC_QUARTZ_4);
+
+        getOrCreateTagBuilder(ModTags.Blocks.ENTROPY_STORAGE_BLOCKS)
+                .forceAddTag(ModTags.Blocks.LOW_ENTROPY_BLOCKS)
+                .forceAddTag(ModTags.Blocks.ENTROPIC_QUARTZ_BLOCKS);
+
     }
 }

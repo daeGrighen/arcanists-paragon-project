@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#arcanistsparagon:low_entropy_blocks",
+    "#arcanistsparagon:entropic_quartz_blocks"
+  ]
+}
