@@ -1,0 +1,7 @@
+{
+  "overlay": {
+    "texture": "arcanistsparagon:block/entropy_cell_stage4_e",
+    "emissive": true,
+    "transparency": "translucent"
+  }
+}

@@ -3,6 +3,8 @@
   "values": [
     "arcanistsparagon:asphodite_ore",
     "arcanistsparagon:ritual_pedestal",
+    "arcanistsparagon:swapper",
+    "arcanistsparagon:entropy_cell",
     "arcanistsparagon:ritual_table"
   ]
 }

@@ -28,6 +28,7 @@ public class ModItemGroups {
                         entries.add(ModItems.RISINGBULB);
                         entries.add(ModItems.RISINGBULB_CLOVE);
                         entries.add(ModItems.ENTROPIC_STAFF);
+
                         //entries.add(ModItems.SCIONBLOOM);
 
                         entries.add(ModBlocks.ASPHODITE_ORE);
@@ -39,6 +40,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ENTROPIC_QUARTZ_2);
                         entries.add(ModBlocks.ENTROPIC_QUARTZ_3);
                         entries.add(ModBlocks.ENTROPIC_QUARTZ_4);
+                        entries.add(ModBlocks.WEANING_IMPATIENS);
+                        entries.add(ModBlocks.SWAPPER);
+                        entries.add(ModBlocks.ENTROPY_CELL);
 
                         //entries.add(ModBlocks.RITUAL_CORE_BASE_BLOCK); hihihi I love programming!
 

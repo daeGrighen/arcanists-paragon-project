@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.BeehiveBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.data.DataWriter;
@@ -19,12 +20,17 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.CopyNbtLootFunction;
+import net.minecraft.loot.function.CopyStateFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.nbt.ContextLootNbtProvider;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.block.ModBlocks;
+import net.polpo.arcanistsparagon.block.custom.EntropyCellBlock;
 import net.polpo.arcanistsparagon.block.custom.RisingbulbCropBlock;
 import net.polpo.arcanistsparagon.block.custom.ScionbloomBlossomBlock;
 import net.polpo.arcanistsparagon.item.ModItems;
@@ -44,13 +50,18 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.RITUAL_PEDESTAL);
         addDrop(ModBlocks.RITUAL_TABLE);
         addDrop(ModBlocks.RITUAL_CORE);
+
         addDrop(ModBlocks.WEANING_IMPATIENS);
+        addDrop(ModBlocks.SCIONBLOOM_BLOSSOM);
         addPottedPlantDrops(ModBlocks.POTTED_SCIONBLOOM_BLOSSOM);
         addPottedPlantDrops(ModBlocks.POTTED_WEANING_IMPATIENS);
 
-        BlockStatePropertyLootCondition.Builder scionbloomBuilder = BlockStatePropertyLootCondition.builder(ModBlocks.SCIONBLOOM_BLOSSOM).properties(StatePredicate.Builder.create()
+
+        addDrop(ModBlocks.ENTROPY_CELL, dropWithBlockStateEntropyCell(ModBlocks.ENTROPY_CELL));
+
+        /*BlockStatePropertyLootCondition.Builder scionbloomBuilder = BlockStatePropertyLootCondition.builder(ModBlocks.SCIONBLOOM_BLOSSOM).properties(StatePredicate.Builder.create()
                 .exactMatch(ScionbloomBlossomBlock.CHARGES, 0));
-        addDrop(ModBlocks.SCIONBLOOM_BLOSSOM, bStateDrops(ModBlocks.SCIONBLOOM_BLOSSOM, scionbloomBuilder));
+        addDrop(ModBlocks.SCIONBLOOM_BLOSSOM, bStateDrops(ModBlocks.SCIONBLOOM_BLOSSOM, scionbloomBuilder));*/
 
         BlockStatePropertyLootCondition.Builder risingbulbBuilder = BlockStatePropertyLootCondition.builder(ModBlocks.RISINGBULB_CROP).properties(StatePredicate.Builder.create()
                 .exactMatch(RisingbulbCropBlock.AGE, 8));
@@ -63,5 +74,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     public LootTable.Builder bStateDrops(Block block, LootCondition.Builder condition) {
         return (LootTable.Builder)this.applyExplosionDecay(block, LootTable.builder().pool(LootPool.builder().with(ItemEntry.builder(block).conditionally(condition))));
+    }
+
+    public static LootTable.Builder dropWithBlockStateEntropyCell(Block drop) {
+        return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(ItemEntry.builder(drop).apply(CopyStateFunction.builder(drop).addProperty(EntropyCellBlock.CHARGES))));
     }
 }

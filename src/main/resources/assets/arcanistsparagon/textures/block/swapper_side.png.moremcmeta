@@ -1,0 +1,7 @@
+{
+    "overlay": {
+        "texture": "arcanistsparagon:block/swapper_side_e",
+        "emissive": true,
+        "transparency": "translucent"
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "block": "arcanistsparagon:entropy_cell",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "charges"
+              ]
+            }
+          ],
+          "name": "arcanistsparagon:entropy_cell"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

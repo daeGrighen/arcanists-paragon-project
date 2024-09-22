@@ -42,21 +42,29 @@ public class ModBlocks {
             new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
 
 
+    public static final Block SWAPPER = registerBlock("swapper",
+            new SwapperBlock(FabricBlockSettings.copyOf(Blocks.CALCITE)));
+
+    public static final Block ENTROPY_CELL = registerBlock("entropy_cell",
+            new EntropyCellBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_QUARTZ_BLOCK)));
+
+
 
 
     public static final Block RISINGBULB_CROP = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID,"risingbulb_crop"),
             new RisingbulbCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
 
     public static final Block SCIONBLOOM_BLOSSOM = registerBlock("scionbloom_blossom",
-            new ScionbloomBlossomBlock(StatusEffects.UNLUCK, 10,
+            new ScionbloomBlock(StatusEffects.UNLUCK, 10,
                     FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
 
     public static final Block WEANING_IMPATIENS = registerBlock("weaning_impatiens",
-            new FlowerBlock(StatusEffects.ABSORPTION, 10,
+            new WeaningImpatiensBlock(StatusEffects.ABSORPTION, 10,
                     FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
 
     public static final Block POTTED_SCIONBLOOM_BLOSSOM = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, "potted_scionbloom_blossom"),
             new FlowerPotBlock(SCIONBLOOM_BLOSSOM, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()));
+
     public static final Block POTTED_WEANING_IMPATIENS = Registry.register(Registries.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, "potted_weaning_impatiens"),
             new FlowerPotBlock(WEANING_IMPATIENS, FabricBlockSettings.copyOf(Blocks.POTTED_ALLIUM).nonOpaque()));
 

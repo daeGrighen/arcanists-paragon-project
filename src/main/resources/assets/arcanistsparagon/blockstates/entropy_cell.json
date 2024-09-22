@@ -1,0 +1,31 @@
+{
+  "variants": {
+    "charges=0": {
+      "model": "arcanistsparagon:block/entropy_cell_stage0"
+    },
+    "charges=1": {
+      "model": "arcanistsparagon:block/entropy_cell_stage1"
+    },
+    "charges=2": {
+      "model": "arcanistsparagon:block/entropy_cell_stage2"
+    },
+    "charges=3": {
+      "model": "arcanistsparagon:block/entropy_cell_stage3"
+    },
+    "charges=4": {
+      "model": "arcanistsparagon:block/entropy_cell_stage4"
+    },
+    "charges=5": {
+      "model": "arcanistsparagon:block/entropy_cell_stage5"
+    },
+    "charges=6": {
+      "model": "arcanistsparagon:block/entropy_cell_stage6"
+    },
+    "charges=7": {
+      "model": "arcanistsparagon:block/entropy_cell_stage7"
+    },
+    "charges=8": {
+      "model": "arcanistsparagon:block/entropy_cell_stage8"
+    }
+  }
+}

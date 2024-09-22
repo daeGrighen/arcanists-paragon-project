@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arcanistsparagon:block/entropy_cell_top",
+    "side": "arcanistsparagon:block/entropy_cell_stage6"
+  }
+}

@@ -1,25 +1,16 @@
 {
   "type": "minecraft:block",
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
-    }
-  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "arcanistsparagon:scionbloom_blossom",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "charges": "0"
-              }
-            }
-          ],
           "name": "arcanistsparagon:scionbloom_blossom"
         }
       ],
