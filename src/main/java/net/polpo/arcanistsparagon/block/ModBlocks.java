@@ -48,6 +48,19 @@ public class ModBlocks {
     public static final Block ENTROPY_CELL = registerBlock("entropy_cell",
             new EntropyCellBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_QUARTZ_BLOCK)));
 
+    public static final Block GRADIENT_CONDUIT = registerBlock("gradient_conduit",
+            new GradientConduitBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_QUARTZ_BLOCK)));
+
+
+    //come CAZZo si salvano numeri negativi
+    /*public static final Block ENDER_RELAY = registerBlock("ender_relay",
+            new EnderRelayBlock(FabricBlockSettings.copyOf(Blocks.CHISELED_QUARTZ_BLOCK)));*/
+
+    public static final Block AGRARIAN_ENTROPIC_ABSORBER = registerBlock("agrarian_entropic_absorber",
+            new AgrarianEntropicAbsorberBlock(FabricBlockSettings.copyOf(Blocks.CALCITE)));
+
+
+
 
 
 
@@ -55,7 +68,7 @@ public class ModBlocks {
             new RisingbulbCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)));
 
     public static final Block SCIONBLOOM_BLOSSOM = registerBlock("scionbloom_blossom",
-            new ScionbloomBlock(StatusEffects.UNLUCK, 10,
+            new ScionbloomBlossomBlock(StatusEffects.UNLUCK, 10,
                     FabricBlockSettings.copyOf(Blocks.ALLIUM).nonOpaque().notSolid()));
 
     public static final Block WEANING_IMPATIENS = registerBlock("weaning_impatiens",

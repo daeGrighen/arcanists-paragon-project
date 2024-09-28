@@ -12,10 +12,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.polpo.arcanistsparagon.ArcanistsParagon;
 import net.polpo.arcanistsparagon.block.ModBlocks;
-import net.polpo.arcanistsparagon.item.custom.DiviningRodItem;
-import net.polpo.arcanistsparagon.item.custom.InkyCoreItem;
-import net.polpo.arcanistsparagon.item.custom.ScionbloomItem;
-import net.polpo.arcanistsparagon.item.custom.SnifferTreatItem;
+import net.polpo.arcanistsparagon.item.custom.*;
 
 public class ModItems {
 
@@ -31,6 +28,9 @@ public class ModItems {
     public static final Item RISINGBULB_CLOVE = registerItem("risingbulb_clove", new AliasedBlockItem(ModBlocks.RISINGBULB_CROP, new FabricItemSettings()));
     //public static final Item SCIONBLOOM = registerItem("scionbloom", new ScionbloomItem(new FabricItemSettings()));
     public static final Item ENTROPIC_STAFF = registerItem("entropic_staff", new Item(new FabricItemSettings().maxCount(1)));
+
+    public static final Item NBT_TESTING_STAFF = registerItem("nbt_testing_staff", new MobReplicatorItem(new FabricItemSettings().maxCount(1)));
+    //public static final Item BINDING_WAND = registerItem("binding_wand", new BindingWandItem(new FabricItemSettings().maxCount(1)));
 
     private static void AddItemsToItemGroup(FabricItemGroupEntries entries){
     }

@@ -79,4 +79,5 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     public static LootTable.Builder dropWithBlockStateEntropyCell(Block drop) {
         return LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(ItemEntry.builder(drop).apply(CopyStateFunction.builder(drop).addProperty(EntropyCellBlock.CHARGES))));
     }
+
 }

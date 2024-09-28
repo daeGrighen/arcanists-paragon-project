@@ -20,6 +20,7 @@ public class ModTags {
         public static final TagKey<Block> ENTROPIC_QUARTZ_BLOCKS = createTag("entropic_quartz_blocks");
 
 
+
         private static TagKey<Block> createTag(String name){
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(ArcanistsParagon.MOD_ID, name));
         }

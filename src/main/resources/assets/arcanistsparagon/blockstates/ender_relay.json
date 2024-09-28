@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "linked=true": {
+      "model": "arcanistsparagon:block/ender_relay_on"
+    },
+    "linked=false": {
+      "model": "arcanistsparagon:block/ender_relay_off"
+    }
+  }
+}

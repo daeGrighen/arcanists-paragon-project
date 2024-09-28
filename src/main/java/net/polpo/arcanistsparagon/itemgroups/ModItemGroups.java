@@ -28,6 +28,7 @@ public class ModItemGroups {
                         entries.add(ModItems.RISINGBULB);
                         entries.add(ModItems.RISINGBULB_CLOVE);
                         entries.add(ModItems.ENTROPIC_STAFF);
+                        //entries.add(ModItems.BINDING_WAND);
 
                         //entries.add(ModItems.SCIONBLOOM);
 
@@ -36,13 +37,16 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RITUAL_PEDESTAL);
                         entries.add(ModBlocks.RITUAL_CORE);
                         entries.add(ModBlocks.SCIONBLOOM_BLOSSOM);
-                        entries.add(ModBlocks.ENTROPIC_QUARTZ_1);
+                        /*entries.add(ModBlocks.ENTROPIC_QUARTZ_1);
                         entries.add(ModBlocks.ENTROPIC_QUARTZ_2);
                         entries.add(ModBlocks.ENTROPIC_QUARTZ_3);
-                        entries.add(ModBlocks.ENTROPIC_QUARTZ_4);
+                        entries.add(ModBlocks.ENTROPIC_QUARTZ_4);*/
                         entries.add(ModBlocks.WEANING_IMPATIENS);
                         entries.add(ModBlocks.SWAPPER);
                         entries.add(ModBlocks.ENTROPY_CELL);
+                        entries.add(ModBlocks.AGRARIAN_ENTROPIC_ABSORBER);
+                        entries.add(ModBlocks.GRADIENT_CONDUIT);
+                        //entries.add(ModBlocks.ENDER_RELAY);
 
                         //entries.add(ModBlocks.RITUAL_CORE_BASE_BLOCK); hihihi I love programming!
 

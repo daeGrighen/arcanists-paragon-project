@@ -1,5 +1,11 @@
-// 1.20.4	2024-09-16T14:26:46.0023086	Arcanist's Paragon/Block Loot Tables
+// 1.20.4	2024-09-23T12:32:44.5294783	Arcanist's Paragon/Block Loot Tables
 585de465dea47fc17c5e8d1feba817592c11a8a6 data\arcanistsparagon\loot_tables\blocks\ritual_pedestal.json
 7d0527e023f87da9ae46fa6e41b776ffa2cdd90f data\arcanistsparagon\loot_tables\blocks\ritual_table.json
 9f6226c173c839e85d477f1cbb1dfa5139ad81d4 data\arcanistsparagon\loot_tables\blocks\asphodite_ore.json
+f901315e55b04ef00c4c9727e25226d9aee85e2e data\arcanistsparagon\loot_tables\blocks\scionbloom_blossom.json
 9a18040a4a60a671d2062c8f077749ab7b4b5ec4 data\arcanistsparagon\loot_tables\blocks\ritual_core.json
+50f767666dd5ee24ec709785d32867007f5a6f7c data\arcanistsparagon\loot_tables\blocks\entropy_cell.json
+bd7888ffda71eda4849cb3730bfb015eeb97b22e data\arcanistsparagon\loot_tables\blocks\potted_scionbloom_blossom.json
+3842c9f194c95115d046faf825997b90c151891a data\arcanistsparagon\loot_tables\blocks\potted_weaning_impatiens.json
+878e1e213c31dec3cbf7559d14e0ac47790b23c2 data\arcanistsparagon\loot_tables\blocks\weaning_impatiens.json
+9d1ef0a5128d711be757b4077afb73f4fbed0c61 data\arcanistsparagon\loot_tables\blocks\risingbulb_crop.json

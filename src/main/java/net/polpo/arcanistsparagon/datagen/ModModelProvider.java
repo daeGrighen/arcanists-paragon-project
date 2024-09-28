@@ -29,6 +29,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleState(ModBlocks.RITUAL_TABLE);
         blockStateModelGenerator.registerSimpleState(ModBlocks.RITUAL_PEDESTAL);
 
+
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.SCIONBLOOM_BLOSSOM, ModBlocks.POTTED_SCIONBLOOM_BLOSSOM, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerFlowerPotPlant(ModBlocks.WEANING_IMPATIENS, ModBlocks.POTTED_WEANING_IMPATIENS, BlockStateModelGenerator.TintType.NOT_TINTED);
         //blockStateModelGenerator.registerSimpleState(ModBlocks.RITUAL_CORE_BASE_BLOCK);

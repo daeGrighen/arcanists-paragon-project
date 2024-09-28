@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arcanistsparagon:block/agrarian_entropic_absorber_top",
+    "side": "arcanistsparagon:block/agrarian_entropic_absorber_side"
+  }
+}

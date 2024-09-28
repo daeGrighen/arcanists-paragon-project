@@ -1,9 +1,6 @@
 {
   "replace": false,
   "values": [
-    "arcanistsparagon:entropic_quartz_1",
-    "arcanistsparagon:entropic_quartz_2",
-    "arcanistsparagon:entropic_quartz_3",
-    "arcanistsparagon:entropic_quartz_4"
+    "arcanistsparagon:entropy_cell"
   ]
 }

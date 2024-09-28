@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "arcanistsparagon:block/gradient_conduit_north"
+    },
+    "facing=south": {
+      "model": "arcanistsparagon:block/gradient_conduit_north"
+    },
+    "facing=east": {
+      "model": "arcanistsparagon:block/gradient_conduit_east"
+    },
+    "facing=west": {
+      "model": "arcanistsparagon:block/gradient_conduit_east"
+    },
+    "facing=up": {
+      "model": "arcanistsparagon:block/gradient_conduit_up"
+    },
+    "facing=down": {
+      "model": "arcanistsparagon:block/gradient_conduit_up"
+    }
+  }
+}

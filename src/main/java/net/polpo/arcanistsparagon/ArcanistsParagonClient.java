@@ -5,10 +5,13 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.polpo.arcanistsparagon.block.ModBlocks;
 import net.polpo.arcanistsparagon.block.entity.ModBlockEntities;
@@ -20,8 +23,26 @@ import net.polpo.arcanistsparagon.screen.RitualTableScreen;
 import net.polpo.arcanistsparagon.util.ArcanistsParagonParticleDecoder;
 
 public class ArcanistsParagonClient implements ClientModInitializer {
+
+    /*public static void registerModelPredicateProviders() {
+        ModelPredicateProviderRegistry.register(ModBlocks.ENTROPY_CELL.asItem(), new Identifier("custom_model_data"), (itemStack, clientWorld, livingEntity, seed) -> {
+            int charges = 0;
+            NbtCompound nbtData = itemStack.getNbt();
+            if (nbtData != null) {
+                charges = Integer.parseInt(nbtData.getCompound("BlockStateTag").getString("charges"));
+            }
+
+            *//*float charges_10 = (float)Math.round((charges / 10.0f) * 10.0f) / 10.0f;
+            ArcanistsParagon.LOGGER.info(charges_10 + " = charges_10");*//*
+            return charges;
+        });
+
+
+    }*/
     @Override
     public void onInitializeClient() {
+
+        /*registerModelPredicateProviders();*/
 
         HandledScreens.register(ModScreenHandlers.RITUAL_TABLE_SCREEN_HANDLER, RitualTableScreen::new);
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RISINGBULB_CROP, RenderLayer.getCutout());

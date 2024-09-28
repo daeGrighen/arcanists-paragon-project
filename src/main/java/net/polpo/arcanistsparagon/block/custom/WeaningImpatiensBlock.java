@@ -27,40 +27,27 @@ import net.polpo.arcanistsparagon.util.ModTags;
 import org.joml.Vector3f;
 
 public class WeaningImpatiensBlock extends FlowerBlock {
-    public static final BooleanProperty BLOCK_DEENTROPIZABLE = BooleanProperty.of("block_deentropizable");
-    public static final BooleanProperty TICK_IS_BEING_SCHEDULED = BooleanProperty.of("tick_is_being_scheduled");
+    public static int ENTROPY_COST = -2;
+    public static final BooleanProperty SCHEDULING_TICK = BooleanProperty.of("scheduling_tick");
 
     public WeaningImpatiensBlock(StatusEffect stewEffect, int duration, Settings settings) {
         super(stewEffect, duration, settings);
     }
 
-
-    private boolean isServerWorld(World world) {
-        return world instanceof ServerWorld;
-    }
-
-    private ServerWorld getServerWorld(World world) {
-        return (ServerWorld) world;
-    }
-
-    private void updateBlockState(ServerWorld serverWorld, BlockPos pos, BlockState state, Boolean entropizable, Boolean scheduledTick) {
-        serverWorld.setBlockState(pos, state.with(BLOCK_DEENTROPIZABLE, entropizable).with(TICK_IS_BEING_SCHEDULED, scheduledTick));
-    }
-
-    @Override
-    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-        BlockState blockBelow = world.getBlockState(pos.down());
-        boolean hasEntropy = !blockBelow.isIn(ModTags.Blocks.LOW_ENTROPY_BLOCKS);
-
-        if (isServerWorld(world)) {
-            ServerWorld serverWorld = getServerWorld(world);
-            updateBlockState(serverWorld, pos, state, hasEntropy, false);
-        }
-    }
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(BLOCK_DEENTROPIZABLE, TICK_IS_BEING_SCHEDULED);
+        builder.add(SCHEDULING_TICK);
+    }
+
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        if (!world.isClient()) {
+            ServerWorld serverWorld = (ServerWorld) world;
+            boolean is_floor_good = canAddOrRemoveEntropyToStorage(world.getBlockState(pos.down()), ENTROPY_COST);
+            serverWorld.setBlockState(pos, state.with(SCHEDULING_TICK, is_floor_good));
+            if(!is_floor_good){
+                world.scheduleBlockTick(pos, state.getBlock(), 2);
+            }
+        }
     }
 
     @Override
@@ -68,69 +55,95 @@ public class WeaningImpatiensBlock extends FlowerBlock {
         return floor.isIn(ModTags.Blocks.ENTROPY_STORAGE_BLOCKS);
     }
 
-    /*@Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient()) {
-            ArcanistsParagon.LOGGER.info("Weaning Impatiens right-clicked!");
-            world.addParticle(ParticleTypes.HAPPY_VILLAGER, pos.getX(), pos.getY(), pos.getZ(), 0.0, 0.0, 0.0);
-        }
-        return ActionResult.SUCCESS;
-    }*/
-
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        spawnParticles(world, pos, DustCTPHelper.DARK_RED, DustCTPHelper.BLACK);
-
-        if (world.getBlockState(pos.down()).isIn(ModTags.Blocks.HIGH_ENTROPY_BLOCKS)) {
-            world.scheduleBlockTick(pos, state.getBlock(), 20);
-        } else {
-            updateBlockState(world, pos, state, true, false);
-            spawnParticles(world, pos, DustCTPHelper.GREEN, DustCTPHelper.LIME);
-        }
-    }
-
-    private void spawnParticles(ServerWorld world, BlockPos pos, Vector3f color1, Vector3f color2) {
-        world.spawnParticles(new DustCTPHelper(color1, color2, 1.0f), pos.getX(), pos.getY(), pos.getZ(), 10, 1.0f, 1.0f, 1.0f, 0.2f);
-    }
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!world.isClient() && entity instanceof MobEntity mob) {
-            handleMobCollision((ServerWorld) world, state, pos, mob);
-        }
-    }
+        if(!world.isClient()){
+            BlockState floorBlockState = world.getBlockState(pos.down());
 
-    private void handleMobCollision(ServerWorld world, BlockState state, BlockPos pos, MobEntity mob) {
-        BlockState blockBelow = world.getBlockState(pos.down());
-        ModEntropizingHelper entropize = new ModEntropizingHelper();
+            if(entity instanceof MobEntity mob && mob.isBaby()){
+                ServerWorld serverWorld = (ServerWorld) world;
 
-        if (!blockBelow.isIn(ModTags.Blocks.LOW_ENTROPY_BLOCKS)) { // Only act if the block has entropy left
-            if (mob.isBaby()) {
+                if(canAddOrRemoveEntropyToStorage(floorBlockState, ENTROPY_COST)) {
+                    addOrRemoveEntropyToStorage(serverWorld, pos.down(), floorBlockState, ENTROPY_COST);
+                    mob.setBaby(false);
+                    spawnDustParticles(serverWorld, pos, DustCTPHelper.HOT_PINK, DustCTPHelper.BLACK, 20, 0.2f);
 
-                // Lower the entropy of the block below
-                BlockState newBaseBlock = entropize.entropy_remove(blockBelow);
-                if (newBaseBlock != null) {
-                    world.setBlockState(pos.down(), newBaseBlock, 4);
-                }
-
-                // Age the mob (make it not a baby)
-                mob.setBaby(false);
-
-                // Show particles and play sound
-                spawnParticles(world, pos, DustCTPHelper.WHITE, DustCTPHelper.HOT_PINK);
-                world.playSound(null, pos, SoundEvents.ENTITY_DOLPHIN_AMBIENT, SoundCategory.PLAYERS, 1.0f, 0.5f);
-
-                // If the block below becomes low entropy, stop entropizing
-                if (newBaseBlock.isIn(ModTags.Blocks.LOW_ENTROPY_BLOCKS)) {
-                    updateBlockState(world, pos, state, false, false);
+                }else{
+                    if(!state.get(SCHEDULING_TICK).booleanValue()) {
+                        ArcanistsParagon.LOGGER.info("Scheduling the first tick!");
+                        serverWorld.scheduleBlockTick(pos, state.getBlock(), 2);
+                        serverWorld.setBlockState(pos, state.with(SCHEDULING_TICK, true));
+                    }
                 }
             }
-        }else{
-            world.scheduleBlockTick(pos, state.getBlock(), 20);
         }
     }
 
-    public boolean getTickIsBeingScheduled(BlockState state) {
-        return state.get(TICK_IS_BEING_SCHEDULED);
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if(!world.isClient()){
+            ArcanistsParagon.LOGGER.info(world.getBlockState(pos).get(SCHEDULING_TICK).toString());
+        }
+        return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if(!canAddOrRemoveEntropyToStorage(world.getBlockState(pos.down()), ENTROPY_COST)){
+            ArcanistsParagon.LOGGER.info("Another tick scheduled");
+            spawnDustParticles(world, pos.down(), DustCTPHelper.CRIMSON, DustCTPHelper.GRAY, 20, 0.6f);
+            world.scheduleBlockTick(pos, state.getBlock(), 20);
+        }else{
+            ArcanistsParagon.LOGGER.info("Stopped the scheduling");
+            world.setBlockState(pos, state.with(SCHEDULING_TICK, false));
+            spawnDustParticles(world, pos.down(), DustCTPHelper.GREEN, DustCTPHelper.LIME, 20, 0.6f);
+        }
+    }
+
+    protected void spawnDustParticles(ServerWorld world, BlockPos pos, Vector3f color1, Vector3f color2, int count, float spread) {
+        world.spawnParticles(new DustCTPHelper(color1, color2, 1.0f), pos.getX()+0.5, pos.getY()+0.5, pos.getZ()+0.5, count, spread, spread, spread, 0.0f);
+    }
+
+    protected int getStorageCharges(BlockState state){
+        return state.get(EntropyCellBlock.CHARGES).intValue();
+    }
+
+    protected int getStorageMaxCharges(BlockState state){
+        if(state.getBlock() instanceof EntropyCellBlock block){
+            return block.getMaxCharges();
+        }
+        return 0;
+    }
+
+    protected void setStorageCharges(ServerWorld world, BlockPos storagePos, BlockState state, int charges){
+        world.setBlockState(storagePos, state.with(EntropyCellBlock.CHARGES, charges));
+    }
+
+    protected boolean canModifyEntropyOfStorage(BlockState state, int final_charges){
+        int max_charges = getStorageMaxCharges(state);
+
+        return final_charges <= max_charges && final_charges >= 0;
+    }
+
+    protected boolean canAddOrRemoveEntropyToStorage(BlockState state, int change){
+        int max_charges = getStorageMaxCharges(state);
+        int current_charges = getStorageCharges(state);
+        int final_charges = current_charges + change;
+
+        return final_charges <= max_charges && final_charges >= 0;
+    }
+
+    protected boolean addOrRemoveEntropyToStorage(ServerWorld world, BlockPos storagePos, BlockState state, int change){
+        /** if it can, returns true and adds entropy to the storage, if it can't it doesn't and returns false**/
+
+        int current_charges = getStorageCharges(state);
+        int final_charges = current_charges + change;
+
+        if(canModifyEntropyOfStorage(state, final_charges)){
+            setStorageCharges(world, storagePos, state, final_charges);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,16 +1,25 @@
 {
-  "parent": "arcanistsparagon:block/entropy_cell_stage0",
-  "overrides": [
-    {"predicate": {"charges": 0}, "model": "arcanistsparagon:item/entropy_cell_0"},
-    {"predicate": {"charges": 1}, "model": "arcanistsparagon:item/entropy_cell_1"},
-    {"predicate": {"charges": 2}, "model": "arcanistsparagon:item/entropy_cell_2"},
-    {"predicate": {"charges": 3}, "model": "arcanistsparagon:item/entropy_cell_3"},
-    {"predicate": {"charges": 4}, "model": "arcanistsparagon:item/entropy_cell_4"},
-    {"predicate": {"charges": 5}, "model": "arcanistsparagon:item/entropy_cell_5"},
-    {"predicate": {"charges": 6}, "model": "arcanistsparagon:item/entropy_cell_6"},
-    {"predicate": {"charges": 7}, "model": "arcanistsparagon:item/entropy_cell_7"},
-    {"predicate": {"charges": 8}, "model": "arcanistsparagon:item/entropy_cell_8"}
-  ]
+  "parent" : "arcanistsparagon:block/entropy_cell_stage0",
 
+  "overrides": [
+    {"predicate": {
+      "custom_model_data": 0}, "model": "arcanistsparagon:item/entropy_cell_0"},
+    {"predicate": {
+      "custom_model_data": 1}, "model": "arcanistsparagon:item/entropy_cell_1"},
+    {"predicate": {
+      "custom_model_data": 2}, "model": "arcanistsparagon:item/entropy_cell_2"},
+    {"predicate": {
+      "custom_model_data": 3}, "model": "arcanistsparagon:item/entropy_cell_3"},
+    {"predicate": {
+      "custom_model_data": 4}, "model": "arcanistsparagon:item/entropy_cell_4"},
+    {"predicate": {
+      "custom_model_data": 5}, "model": "arcanistsparagon:item/entropy_cell_5"},
+    {"predicate": {
+      "custom_model_data": 6}, "model": "arcanistsparagon:item/entropy_cell_6"},
+    {"predicate": {
+      "custom_model_data": 7}, "model": "arcanistsparagon:item/entropy_cell_7"},
+    {"predicate": {
+      "custom_model_data": 8}, "model": "arcanistsparagon:item/entropy_cell_8"}
+  ]
 }
 
